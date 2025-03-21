@@ -22,7 +22,7 @@ public class SessionService : ISessionService
     public async Task<Session> GetSessionAsync()
     {
         return await _dbContext.Sessions
-            .Where(x => x.EndedAtUTC > x.StartedAtUTC)
+            .Where(x => x.DeviceType == DeviceType.Desktop)
             .OrderBy(x => x.StartedAtUTC)
             .FirstOrDefaultAsync();
     }
